@@ -7,6 +7,9 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PillarBlock;
@@ -39,7 +42,7 @@ public class DelightfulFroge implements ModInitializer {
     public static final GameRules.Key<GameRules.IntRule> FROGE_CHANCE = GameRuleRegistry.register(
             "frogeChance",
             GameRules.Category.MOBS,
-            GameRuleFactory.createIntRule(1, 0, 100)
+            GameRuleFactory.createIntRule(0, 0, 100)
     );
 
     @Override
@@ -73,6 +76,13 @@ public class DelightfulFroge implements ModInitializer {
                     )).build()
             );
         });
+
+        //noinspection OptionalGetWithoutIsPresent
+        ResourceManagerHelper.registerBuiltinResourcePack(
+                id("exclusive-froge"),
+                FabricLoader.getInstance().getModContainer("delightful-froge").get(),
+                ResourcePackActivationType.NORMAL
+        );
     }
 
     @SuppressWarnings("UnstableApiUsage")

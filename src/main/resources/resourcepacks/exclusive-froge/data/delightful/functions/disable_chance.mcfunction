@@ -1,0 +1,1 @@
+gamerule frogeChance 0
